@@ -1,13 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 - War Game</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/app.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Game</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/app.js" defer></script>
 </head>
+
 <body>
-    <h1>Test Message</h1>
+  <header>
+    <nav>
+      <p class="brand-icon">☢️</p>
+      <h1>War Game</h1>
+    </nav>
+  </header>
+  <main class="container">
+    <section id="instructions">
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore laborum quia perspiciatis omnis officia
+        aperiam
+        suscipit sit voluptatum vero cupiditate, distinctio architecto. Totam delectus debitis deleniti mollitia nemo in
+        tenetur.</p>
+      <button id="start-game">Start Game</button>
+    </section>
+    <section>
+      <p id="game-message"></p>
+    </section>
+    <section id="gameboard">
+
+      <div id="player-cards">
+        <div id="player-stats">
+          <div>Wins: <span id="player-wins"></span></div>
+          <div>Deck: <span id="player-deck-size"></span></div>
+        </div>
+        <div id="player-cards-wrap">
+        </div>
+      </div>
+      <div id="computer-cards">
+        <div id="computer-stats">
+          <div>Wins: <span id="computer-wins"></span></div>
+          <div>Deck: <span id="computer-deck-size"></span></div>
+        </div>
+        <div id="computer-cards-wrap">
+        </div>
+      </div>
+      <div class="button-container"><button id="draw-button">Draw Card</button></div>
+    </section>
+  </main>
 </body>
+
 </html>

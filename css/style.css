@@ -1,10 +1,129 @@
 * {
   box-sizing: border-box;
-  /* allow size (width/height) to constrain content */
 }
 
-html{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+html {
+  font: 20px 'Arial', san-serif;
 }
 
+body {
+  margin: 0;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: beige;
+}
+
+header,
+nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+nav {
+  background-color: antiquewhite;
+  flex-direction: row;
+  padding: 0.5rem 1.33rem;
+}
+
+.brand-icon {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.container {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#instructions {
+  text-align: center;
+}
+
+#instructions button,
+#draw-button {
+  padding: 0.66rem 2rem;
+  background-color: orange;
+  border: 0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#gameboard {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  min-height: 40vh;
+  border: 1px solid black;
+  gap: 1rem;
+  flex-wrap: wrap;
+  display: none;
+}
+
+#gameboard > div {
+  border: 2px solid blue;
+  background-color: lightblue;
+  flex: 1;
+  min-width: 400px;
+  min-height: 40vh;
+}
+
+#gameboard > .button-container {
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  padding: 1.6rem;
+  justify-content: center;
+  background-color: initial;
+  border: 0;
+}
+
+#game-message {
+  min-height: 3rem;
+  font-size: 1.5rem;
+}
+#player-cards,
+#computer-cards {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+#player-stats,
+#computer-stats {
+  width: min-content;
+  min-width: 6rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  border: 1px solid blue;
+  justify-content: space-around;
+}
+
+#computer-cards-wrap,
+#player-cards-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+.card {
+  background-color: white;
+  width: 15vw;
+  min-width: 150px;
+  aspect-ratio: 1/1.4;
+  position: absolute;
+  border: 2px solid red;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.face-down {
+  background-color: grey;
+}
