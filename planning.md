@@ -85,138 +85,8 @@
 ## Psuedocode
 
 ```js
-/* 
-Feature: Landing Page 
-Requirements: 
-- HTML content displaying name of game
-- HTML content including game icon
-- HTML styling that separates the header from the gameboard
-*/
-
-/* 
-Feature: Start Game UI 
-Requirements: 
-- HTML content displaying a start button
-- MVP: DOM el caching start button
-- DOM el - on click should be hidden  
-- event listener for start button - on click - start game functionality is called 
-- event handler should also reveal game ui and trigger deck / shuffle functionality 
-*/
-
-/* 
-Feature: Game Instructions 
-Requirements: 
-- MVP: HTML content displaying at bottom of screen - lorem ipsum okay to start 
-- Stretch: content is hidden while game is running
-*/
-
-/* 
-Feature: Game UI (game message, cards counts, turns won, etc) 
-Requirements: 
-- HTML Content container to include message, player and computer card counts, turns won
-- DOM el - cache container
-- DOM el - container should be hidden on page load
-- DOM el - container should be revealed on start
-- DOM el - message should be initial state 
-- DOM el - card counts for players (2)
-- DOM el - win counts for players (2)
-*/
-
-/* 
-Feature: Create deck and deal shuffled cards 
-Requirements:
-- variable for playerDeck []
-- variable for computerDeck []
-- variable for playerWarDeck []
-- variable for computerWarDeck []
-- class for creating cards { suit, face, value, className, asset }
-- class for creating deck
-- class method to shuffle deck []
-- class method to deal shuffled deck to hands (param - p1, p2)
-*/
-
-/* 
-Feature: Draw card UI interaction 
-Requirements: 
-- DOM el - draw button
-- event listener for draw button - calls handleDraw()
-- handler - handleDraw() function to pop() last Card {} for players from respective decks
-  - variable - playerCard 
-  - variable - computerCard
-- handleDraw() disables button until winner of turn is determined 
-- handleDraw() calls playerTurn() and computerTurn() that draws cards and calls renderCard()
-
-*/
-/* 
-Feature: Render players' current card 
-Requirements: 
-- HTML content for assigning player card content 
-- HTML content for assigning computer card content 
-- render function to display current cards (params or global variables?) for each player's container area. 
-- renderCurrentCards() calls determineWinner() (stretch after delay) - refactored
-*/
-
-/* 
-Feature: Determine Winner 
-Requirements: 
-- variable - playerWins
-- variable - computerWins
-- Function (p1Deck, p2Deck)
-- evaluates the last card object arguments for match (WAR) - call triggerWar() / return
-- evaluate cards - if value of card1 > card2 - winner is player1 else player2 
-- move cards to bottom of correct hand
-- update _Wins variable
-- removes disabled attribute for draw button (after delay) 
-- call renderGameUI()
-*/
-
-/* 
-Feature: Update Game UI with game status (Player and Computer) 
-Requirements: 
-- function - called in render() - updates game message DOM el
-- function - renderWins() - updates playerWin / computerWin DOM el
-- functions - renderPlayerHands() players hand Size - (deck.length)
-*/
-
-/* 
-Feature: Update Game UI for War Turn 
-
-Requirements: 
-- draw 2 cards from players hands 
-- insert 2 cards (for each player) into respective war decks
-- evaluate last card in player's war decks (determine winner or game over)
-- call hideDrawButton()
-- call renderWarHands()
-- delay - call determineWarWinner()
-  - if war - call triggerWar() functions again
-  - if round won - trigger - exitWar()
-*/
-
-/* 
-Feature: Render War Hands for each player 
-Requirements: 
-- params - renderWarCards(p1Cards, p2Cards)
-- use iterator to render multiple cards (one face up, one or more face down)
-*/
-
-/* 
-Feature: Exit war and UI updates 
-Requirements: 
-- function - exitWar()
-- After war ends, update winner's deck 
-- revealDrawButton() - (stretch - on delay)
-
-*/
-
-/* 
-Feature: Game over for empty player deck 
-Requirements: 
-function - checkWin() - called after each turn - before draw()
-- variable - playerDeck - check length if empty
-- calls endGame( winner )
-
-*/
-
+// PSEUDOCODE
+// ICEBOX
 /* 
 Feature: Game over for empty computer deck 
 Requirements: 
@@ -243,9 +113,156 @@ function - resetGame() - triggered by reset/restart button after win
 
 */
 
-// ICEBOX Features
+// COMPLETED FEATURE  
+
+/* 
+Feature: Game over Message and Play Again UI 
+Requirements:
+function - renderWin() - called by endGame( winner )
+
+  - updates game message
+  - hides game board
+  - reveals reset
+*/
+
+// ICEBOX
+/* 
+Feature: Restart game on 'play again' interaction 
+Requirements: 
+dom element - resetButtonEl (hidden after game load / initial reset listener)
+function - resetGame() - triggered by reset/restart button after win
+
+*/
+
+// DONE
+
+/* 
+
+Feature: Exit war and UI updates 
+Requirements: 
+- function - handleWarWinner() 
+- called by checkWinner() to evaluate last card in player's war decks (determine winner or game over) - DONE
+    - if war occurs again in checkWinner() - call handleWar() recurse - DONE
+    - if war round won inside later handlewWarWinner() - DONE
+
+- handleWarWinner(winner) - called inside checkWinner()
+  - update state and reset war decks and current cards - DONE
+  - call revealDrawButton() - DONE
+
+/* 
+Feature: Render War Hands for Each Player 
+Requirements: 
+- params - renderWarCards(cards, target) - DONE
+- reset innerHTML
+- use iterator to render multiple cards (one face up, one or more face down)
+*/
+
+/* 
+Feature: Update Game UI for War Turn 
+Requirements: 
+
+- add current player cards to respective warDecks - DONE
+- call handleWar()
+-   draw 2 cards from players hands if available or gameOver()- DONE
+-   insert 2 cards (for each player) into respective war decks - DONE
+-   call renderWarCards() - with all necessary arguments (clear current card HTML first) - DONE
+-   call checkWinner()
+*/
+
+/* 
+Feature: Update Game UI with game status (Player and Computer) 
+Requirements: 
+- function - renderMessage() - called in handleDraw() - updates game message DOM el - DONE
+- function - renderGameStats() - updates playerWin / computerWin DOM el, deck counts - DONE 
+- functions - renderPlayerHands() players hand Size - (deck.length) - Redudant - DONE
+*/
+
+/* 
+Feature: Render players' current card 
+Requirements: 
+- HTML content for assigning player card content - DONE
+- HTML content for assigning computer card content - DONE 
+- variable - p1Card -> set in playerTurn()
+- variable - p2Card -> set in computerTurn()
+- renderCard() function to display current cards (data) for each player's container area (target). - DONE
+- renderCard() is called by handleDraw() - for both players - DONE 
+- Additional params added later - faceup, war, offset, - DONE
+*/
+
+/* 
+Feature: Draw card UI interaction 
+Requirements: 
+- DOM el - draw button
+- event listener for draw button - calls handleDraw()
+- handler - handleDraw() function to pop() last Card {} for players from respective decks
+  - variable - p1Card - updated in playerTurn() - DONE
+  - variable - p2Card (computer)- updated in playerTurn() - DONE
+- HandleDraw() disables button until winner of turn is determined - DONE
+- handleDraw() calls playerTurn() and computerTurn() - which set state and render current cards - DONE 
+*/
+
+/* 
+Feature: Create deck and deal shuffled cards 
+Requirements:
+- variable for playerDeck [] - DONE
+- variable for computerDeck [] - DONE 
+- variable for pWarDeck [] - DONE 
+- variable for cWarDeck [] - DONE 
+- class for creating cards { suit, face, value, className, asset, } - DONE
+- class for creating deck - DONE
+- class method to shuffle deck [] - DONE 
+- class method to return shuffled deck to hands (param - p1, p2) - DONE 
+*/
+
+/*
+Feature: Game UI (game message, cards counts, turns won, etc) 
+
+Requirements: 
+- HTML Content container to include message, player and computer card counts, turns won
+- DOM el - cache container - BLOCKER
+- DOM el - container should be hidden on page load - DONE
+- DOM el - container should be revealed on start - DONE 
+- DOM el - message should be initial state - DONE
+- DOM el - card counts for players (2) - DONE
+- DOM el - win counts for players (2) - DONE
+*/
+
+/* 
+Feature: Start Game UI 
+Requirements: 
+- HTML content displaying a start button - DONE
+- MVP: DOM el caching start button - DONE
+- DOM el - on click instructions should be hidden  - DONE 
+- event listener for start button - on click - start game functionality is called - DONE
+- event handler should also reveal game ui and trigger deck / shuffle functionality - DONE
+*/
+
+/* 
+Feature: Game Instructions 
+Requirements: 
+- MVP: HTML content displaying at bottom of screen - lorem ipsum okay to start - DONE
+- Stretch: content is hidden while game is running - DONE 
+*/
+
+/* 
+Feature: Landing Page 
+Requirements: 
+- HTML content displaying name of game - DONE
+- HTML content including game icon - DONE
+- HTML styling that separates the header from the gameboard - DONE
+*/
+
+// Future Features
 // TODO - create testGameOver function
 // TODO - create testWar function
 // TODO - create testWarChain function
 // TODO - refactor state to class instances (Player)
+// CURRENT Feature
+/* 
+Feature: Game over for empty computer deck 
+Requirements: 
+function - checkWin() - called after each turn - before draw()
+- variable - computerDeck - check length if empty
+- calls endGame( winner ) 
+*/
 ```

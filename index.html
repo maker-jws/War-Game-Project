@@ -18,34 +18,33 @@
   </header>
   <main class="container">
     <section id="instructions">
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore laborum quia perspiciatis omnis officia
-        aperiam
-        suscipit sit voluptatum vero cupiditate, distinctio architecto. Totam delectus debitis deleniti mollitia nemo in
-        tenetur.</p>
+      <p>"War" is a classic card game played between two players, where the goal is to win all the cards. The game involves drawing cards from each player's deck and comparing their values to determine the winner of each round. The game features special rules for "war," where cards of equal value lead to a tie-breaking scenario.</p>
       <button id="start-game">Start Game</button>
     </section>
     <section>
       <p id="game-message"></p>
     </section>
     <section id="gameboard">
+      <div class="button-container"><button id="draw-button">Draw Card</button></div>
 
       <div id="player-cards">
         <div id="player-stats">
-          <div>Wins: <span id="player-wins"></span></div>
-          <div>Deck: <span id="player-deck-size"></span></div>
+          <p>Wins: <span id="player-wins"></span></p>
+          <p>Deck: <span id="player-deck-size"></span></p>
         </div>
         <div id="player-cards-wrap">
+          <div class="card-wrap"></div>
         </div>
       </div>
       <div id="computer-cards">
         <div id="computer-stats">
-          <div>Wins: <span id="computer-wins"></span></div>
-          <div>Deck: <span id="computer-deck-size"></span></div>
+          <p>Wins: <span id="computer-wins"></span></p>
+          <p>Deck: <span id="computer-deck-size"></span></p>
         </div>
         <div id="computer-cards-wrap">
+          <div class="card-wrap"></div>
         </div>
       </div>
-      <div class="button-container"><button id="draw-button">Draw Card</button></div>
     </section>
   </main>
 </body>

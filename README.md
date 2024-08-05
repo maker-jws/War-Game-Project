@@ -26,7 +26,7 @@
    - The player with the higher value card wins all the cards involved in the war.
 
 1. **Winning the Game**:
-   - The game will until on of the players has all the cards, or if a specific game-ending condition is met (e.g., not enough cards to continue a war).
+   - The game will continue until one of the players has all the cards, or if a specific game-ending condition is met (e.g., not enough cards to continue a war).
 
 
 ## Attributions
@@ -36,7 +36,7 @@
 ## Technologies Used
 
 1. JavaScript
-   1. setTimeout
+   1. setTimeout()
    1. Vanilla JS - DOM
 1. HTML
 1. CSS
