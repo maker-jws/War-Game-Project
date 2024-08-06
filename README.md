@@ -2,7 +2,7 @@
 
 # War Game - JS Browser Game
 
-## Game Overview:
+## About:
 
 "War" is a classic card game played between two players, where the goal is to win all the cards. The game involves drawing cards from each player's deck and comparing their values to determine the winner of each round. The game features special rules for "war," where cards of equal value lead to a tie-breaking scenario.
 
@@ -31,9 +31,14 @@
    - The game will continue until one of the players has all the cards, or if a specific game-ending condition is met (e.g., not enough cards to continue a war).
 
 
+## Try Out the War Game!
+
+[Live Deployment Link](https://maker-jws.github.io/War-Game-Project/)
+
+
 ## Attributions
 
-- [Shuffle Function - Used in Deck Class](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array) 
+- [Shuffle Function - Used in Deck Class](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
 
 ## Technologies Used
 
@@ -44,6 +49,8 @@
 1. CSS
 
 ## Next Steps
+
+- Add mobile responsiveness
 - Add CSS Cards Library to the game
 - Explore [Tailwind CSS](https://tailwindcss.com/)
 - Additional timers for UI changes
