@@ -19,6 +19,7 @@ const playerCardsEl = document.querySelector("#player-cards .card-wrap");
 
 // UI - buttons
 const drawCardEl = document.querySelector("#draw-button");
+const resetButtonEl = document.querySelector("#reset-button");
 const startButtonEl = document.querySelector("#start-game");
 // UI - game state
 const gameMessageEl = document.querySelector("#game-message");
@@ -105,8 +106,8 @@ class Deck {
 
 class TestDeck extends Deck {
   static suits = ["heart", "diamond"];
-  static values = [2, 3, 4, 5, 6, 7, 8];
-  static faces = ["2", "3", "4", "5", "6", "7", "8"];
+  static values = [2, 3, 4, 5];
+  static faces = ["2", "3", "4", "5"];
 }
 
 // FUNCTIONS
@@ -130,6 +131,34 @@ const createDeck = (isTest = false) => {
   return deck.split();
 };
 
+const resetCards = () => {
+  p1Card = null;
+  p2Card = null;
+};
+
+const resetWarDecks = () => {
+  pWarDeck = [];
+  cWarDeck = [];
+};
+
+const resetPlayerStats = () => {
+  playerWins = 0;
+  computerWins = 0;
+  playerDeck = null;
+  computerDeck = null;
+  resetCards();
+  resetWarDecks();
+};
+
+const renderWinner = () => {
+  drawCardEl.classList.toggle("hidden");
+  playerCardsEl.classList.toggle("hidden");
+  computerCardsEl.classList.toggle("hidden");
+  resetButtonEl.classList.toggle("hidden");
+
+  renderMessage(`Game Over - Winner is: ${gameWinner}`);
+};
+
 const renderCard = (
   data,
   target,
@@ -137,7 +166,6 @@ const renderCard = (
   war = false,
   offset = 0
 ) => {
-
   if (!war) target.innerHTML = "";
 
   const newCard = document.createElement("div");
@@ -166,18 +194,31 @@ const renderWarCards = (cards, target) => {
 };
 
 const gameOver = () => {
-  renderMessage(`Game Over - Winner is: ${gameWinner || "TBD"}`);
+  renderWinner();
+  resetPlayerStats();
+};
+
+const continueGame = () => {
+  return playerDeck.length && computerDeck.length;
+};
+
+const determineWinner = () => {
+  if (playerDeck.length > computerDeck.length) {
+    gameWinner = "The Player";
+  } else {
+    gameWinner = "The Computer";
+  }
+};
+
+const checkGameWinner = () => {
+  determineWinner();
+  return gameOver();
 };
 
 const handleWar = () => {
   // check if game is over at Start of War
   if (playerDeck.length < 2 || computerDeck.length < 2) {
-    if (playerDeck.length > computerDeck.length) {
-      gameWinner = "The Player";
-    } else {
-      gameWinner = "The Computer";
-    }
-    return gameOver();
+    return checkGameWinner();
   }
 
   pWarDeck.push(playerDeck.pop(), playerDeck.pop());
@@ -214,10 +255,8 @@ const handleWarWinner = (winner) => {
     computerWins++;
   }
 
-  p1Card = null;
-  p2Card = null;
-  pWarDeck = [];
-  cWarDeck = [];
+  resetCards();
+  resetWarDecks();
 
   renderGameStats();
 
@@ -225,7 +264,7 @@ const handleWarWinner = (winner) => {
 };
 
 const handleWinner = (winner) => {
-  renderMessage(`The winner is '${winner[0].toUpperCase()+winner.slice(1)}'`);
+  renderMessage(`The winner is '${winner[0].toUpperCase() + winner.slice(1)}'`);
 
   if (winner === "player") {
     playerDeck.unshift(p2Card, p1Card);
@@ -235,14 +274,15 @@ const handleWinner = (winner) => {
     computerWins++;
   }
 
-  p1Card = null;
-  p2Card = null;
-
+  resetCards();
   renderGameStats();
+
   setTimeout(enableDrawButton, 1500);
 };
 
 const checkWinner = (war = false) => {
+  renderGameStats();
+
   if (p1Card && p2Card) {
     let roundWinner;
     if (p1Card.value === p2Card.value) {
@@ -255,34 +295,54 @@ const checkWinner = (war = false) => {
     } else {
       roundWinner = "computer";
     }
+
     if (war) {
       handleWarWinner(roundWinner);
     } else {
       handleWinner(roundWinner);
     }
   } else {
-    gameOver();
+    return checkGameWinner();
+  }
+
+  if (!continueGame()) {
+    return checkGameWinner();
   }
 };
 
 const handleDraw = () => {
+  if (!continueGame()) {
+    return checkGameWinner();
+  }
+
   disableDrawButton();
   playerTurn();
   computerTurn();
   checkWinner();
 };
 
+const resetGame = () => {
+  gameBoardEl.style.display = "none";
+  instructionsEl.style.display = "block";
+  resetButtonEl.classList.add("hidden");
+  enableDrawButton();
+  renderMessage("");
+};
+
 const startGame = () => {
   gameBoardEl.style.display = "flex";
   instructionsEl.style.display = "none";
+  drawCardEl.classList.remove("hidden");
+
   const [p1, p2] = createDeck(debug);
   playerDeck = p1;
   computerDeck = p2;
-  
+
   renderMessage("Press 'Draw Card' button to start");
   renderGameStats();
 };
 
 // EVENT LISTENERS
 startButtonEl.addEventListener("click", startGame);
+resetButtonEl.addEventListener("click", resetGame);
 drawCardEl.addEventListener("click", handleDraw);

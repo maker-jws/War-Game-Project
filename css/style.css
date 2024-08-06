@@ -25,6 +25,10 @@
   background-color: var(--accent-bg-red);
 }
 
+.hidden{
+  display: none;
+}
+
 html {
   font: 20px "Arial", san-serif;
 }
@@ -80,7 +84,7 @@ nav {
 }
 
 #instructions button,
-#draw-button {
+#draw-button, #reset-button {
   padding: 0.66rem 2rem;
   background-color: var(--primary-cta-bg);
   border: 0;

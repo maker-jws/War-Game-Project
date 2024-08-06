@@ -90,19 +90,21 @@
 /* 
 Feature: Game over for empty computer deck 
 Requirements: 
-function - checkWin() - called after each turn - before draw()
+function - continueGame() - called after each turn - before draw()
 - variable - computerDeck - check length if empty
-- calls endGame( winner ) 
+- calls determineWinner()
 */
 
 /* 
 Feature: Game over Message and Play Again UI 
 Requirements:
-function - renderWin() - called by endGame( winner )
+resetButtonEl - DOM (hidden by default)
 
+function - determineWinner() - called by gameOver( )
+function - renderWinner()
   - updates game message
-  - hides game board
-  - reveals reset
+  - hides draw button
+  - reveals reset button
 */
 
 /* 
