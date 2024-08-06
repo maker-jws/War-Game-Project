@@ -1,5 +1,28 @@
+:root {
+  --main-bg: #f5f5dc;
+  --secondary-bg: #faebd7;
+  --bg-blue: #add8e6;
+  --bg-rgb-blue: 173, 216, 230;
+  --bg-red: #ffbcbc;
+  --bg-rgb-red: 255, 188, 188;
+  --accent-bg-blue: #90cbdeeb;
+  --accent-bg-red: #eba0a0e4;
+  --primary-cta-bg: #ffa500;
+}
 * {
   box-sizing: border-box;
+}
+.bg-blue {
+  background-color: var(--bg-blue);
+}
+.bg-red {
+  background-color: var(--bg-red);
+}
+.bg-blue-accent {
+  background-color: var(--accent-bg-blue);
+}
+.bg-red-accent {
+  background-color: var(--accent-bg-red);
 }
 
 html {
@@ -12,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: beige;
+  background-color: var(--main-bg);
   gap: 2rem;
   position: relative;
   min-height: 100%;
@@ -29,7 +52,7 @@ nav {
 
 nav {
   & {
-    background-color: antiquewhite;
+    background-color: var(--secondary-bg);
     flex-direction: row;
     padding: 0.5rem 1.33rem;
   }
@@ -44,10 +67,7 @@ nav {
   width: 80vw;
   height: 100%;
   flex: 1;
-  display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
   gap: 1.5rem;
 }
 
@@ -62,7 +82,7 @@ nav {
 #instructions button,
 #draw-button {
   padding: 0.66rem 2rem;
-  background-color: orange;
+  background-color: var(--primary-cta-bg);
   border: 0;
   border-radius: 4px;
   font-size: 1rem;
@@ -73,7 +93,7 @@ nav {
   padding: 2rem;
   display: flex;
   min-height: 40vh;
-  background-color: antiquewhite;
+  background-color: var(--secondary-bg);
   gap: 1rem;
   flex-wrap: wrap;
   display: none;
@@ -81,18 +101,16 @@ nav {
 
 #gameboard {
   & > div {
-    background-color: lightblue;
     flex: 1;
-    min-width: max-content;
-    min-height: 40vh;
+    min-height: vw;
+    min-height: min-content;
+    padding: 3rem;
   }
 
   .button-container {
     min-width: 100%;
     min-height: auto;
-    display: flex;
-    padding: 1.6rem;
-    justify-content: center;
+    padding: 1rem;
     background-color: initial;
     border: 0;
   }
@@ -105,46 +123,56 @@ nav {
 #player-cards,
 #computer-cards {
   display: flex;
+  flex-wrap: wrap;
   padding: 1rem;
   gap: 1rem;
 }
 
 #player-stats,
 #computer-stats {
-  width: max-content;
   display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  justify-content: space-around;
-  background-color: #90cbdeeb;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: .5rem 1.5rem;
+  flex: 1;
+  height: max-content;
+  width: min-content;
+  min-width: 10rem;
+  text-align: center;
+  & > p {
+    font-weight: 600;
+  }
+  & span {
+    border-top: 1px solid black;
+    display: block;
+  }
 }
 
 #computer-cards-wrap,
 #player-cards-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: max-content;
   flex: 1;
-
-  & .card-wrap {
-    position: relative;
-    padding: clamp(10vh, 5vh, 200px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
 
-.card {
+
+.card-wrap {
+  position: relative;
+  padding: clamp(10vh, 5vh, 200px);
+}
+
+.flex-ctr-ctr{
   display: flex;
-  position: absolute;
   justify-content: center;
   align-items: center;
+}
+.card {
+  position: absolute;
   width: auto;
-  padding: 0.25rem;
   min-width: 150px;
   max-width: 360px;
   aspect-ratio: 1/1.4;
+  padding: 0.25rem;
   background-color: white;
   border-radius: 0.4rem;
   box-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.25);

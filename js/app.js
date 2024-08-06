@@ -137,10 +137,11 @@ const renderCard = (
   war = false,
   offset = 0
 ) => {
+
   if (!war) target.innerHTML = "";
 
   const newCard = document.createElement("div");
-  newCard.classList.add("card", data.asset);
+  newCard.classList.add("card", "flex-ctr-ctr", data.asset);
   newCard.setAttribute("data-value", data.value);
 
   if (war) {

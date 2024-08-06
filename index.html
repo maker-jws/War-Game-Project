@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>War Game</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/app.js" defer></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>War Game</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/app.js" defer></script>
-</head>
+  <body>
+    <header>
+      <nav>
+        <p class="brand-icon">☢️</p>
+        <h1>War Game</h1>
+      </nav>
+    </header>
+    <main class="container flex-ctr-ctr">
+      <section id="instructions" class="">
+        <p>
+          "War" is a classic card game played between two players, where the
+          goal is to win all the cards. The game involves drawing cards from
+          each player's deck and comparing their values to determine the winner
+          of each round. The game features special rules for "war," where cards
+          of equal value lead to a tie-breaking scenario.
+        </p>
+        <button id="start-game">Start Game</button>
+      </section>
+      <section>
+        <p id="game-message"></p>
+      </section>
+      <section id="gameboard">
+        <div class="button-container flex-ctr-ctr">
+          <button id="draw-button">Draw Card</button>
+        </div>
 
-<body>
-  <header>
-    <nav>
-      <p class="brand-icon">☢️</p>
-      <h1>War Game</h1>
-    </nav>
-  </header>
-  <main class="container">
-    <section id="instructions">
-      <p>"War" is a classic card game played between two players, where the goal is to win all the cards. The game involves drawing cards from each player's deck and comparing their values to determine the winner of each round. The game features special rules for "war," where cards of equal value lead to a tie-breaking scenario.</p>
-      <button id="start-game">Start Game</button>
-    </section>
-    <section>
-      <p id="game-message"></p>
-    </section>
-    <section id="gameboard">
-      <div class="button-container"><button id="draw-button">Draw Card</button></div>
-
-      <div id="player-cards">
-        <div id="player-stats">
-          <p>Wins: <span id="player-wins"></span></p>
-          <p>Deck: <span id="player-deck-size"></span></p>
+        <div class="bg-blue" id="player-cards">
+          <div class="bg-blue-accent" id="player-stats">
+            <p>Wins: <span id="player-wins"></span></p>
+            <p>Deck: <span id="player-deck-size"></span></p>
+          </div>
+          <div class="flex-ctr-ctr" id="player-cards-wrap">
+            <div class="card-wrap flex-ctr-ctr"></div>
+          </div>
         </div>
-        <div id="player-cards-wrap">
-          <div class="card-wrap"></div>
+        <div class="bg-red" id="computer-cards">
+          <div class="bg-red-accent" id="computer-stats">
+            <p>Wins: <span id="computer-wins"></span></p>
+            <p>Deck: <span id="computer-deck-size"></span></p>
+          </div>
+          <div class="flex-ctr-ctr" id="computer-cards-wrap">
+            <div class="card-wrap flex-ctr-ctr"></div>
+          </div>
         </div>
-      </div>
-      <div id="computer-cards">
-        <div id="computer-stats">
-          <p>Wins: <span id="computer-wins"></span></p>
-          <p>Deck: <span id="computer-deck-size"></span></p>
-        </div>
-        <div id="computer-cards-wrap">
-          <div class="card-wrap"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-</body>
-
+      </section>
+    </main>
+  </body>
 </html>
