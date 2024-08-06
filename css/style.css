@@ -92,7 +92,7 @@ nav {
   width: 100%;
   padding: 2rem;
   display: flex;
-  min-height: 40vh;
+  min-height: 60vh;
   background-color: var(--secondary-bg);
   gap: 1rem;
   flex-wrap: wrap;
@@ -102,7 +102,6 @@ nav {
 #gameboard {
   & > div {
     flex: 1;
-    min-height: vw;
     min-height: min-content;
     padding: 3rem;
   }
@@ -146,6 +145,7 @@ nav {
   & span {
     border-top: 1px solid black;
     display: block;
+    padding-top: .6rem;
   }
 }
 
