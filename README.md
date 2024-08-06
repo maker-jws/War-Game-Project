@@ -1,5 +1,3 @@
-![alt text](./assets/image.png)
-
 # War Game - JS Browser Game
 
 ## About:
