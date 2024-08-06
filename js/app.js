@@ -70,11 +70,8 @@ const resetPlayerStats = () => {
 };
 
 const renderWinner = () => {
-  drawCardEl.classList.toggle("hidden");
-  playerCardsEl.classList.toggle("hidden");
-  computerCardsEl.classList.toggle("hidden");
-  resetButtonEl.classList.toggle("hidden");
-
+  drawCardEl.classList.add("hidden");
+  playerCardsEl.classList.remove("hidden");
   renderMessage(`Game Over - Winner is: ${gameWinner}`);
 };
 

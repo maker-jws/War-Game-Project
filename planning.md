@@ -78,7 +78,7 @@
 - AAU, if 'War' is active I would like to see one card draw (face-down), and a second card drawn face up for each player
 - AAU, depending on the outcome of war turn, I would like to see game status message update and player deck counts change.
 - AAU, if I run out of cards in my hand (at the start of a turn, or during war turn), I would like to know that the computer 'won' the game.
-- AAU, if my opponent run has not cards left (at the start of a turn, or during war turn), I would like to know that I 'won' the game.
+- AAU, if my opponent run has no cards left (at the start of a turn, or during war turn), I would like to know that I 'won' the game.
 - AAU, if either player has won, I want to see a 'game over' message appear and a 'play again?' button replace the current cards.
 - AAU, If I click the 'play again' button, I want the game to restart and the deck of cards to be shuffled.
 
@@ -86,13 +86,14 @@
 
 ```js
 // PSEUDOCODE
-// ICEBOX
+
+// COMPLETED FEATURE  
 /* 
-Feature: Game over for empty computer deck 
+Feature: Restart game on 'play again' interaction - DONE 
 Requirements: 
-function - continueGame() - called after each turn - before draw()
-- variable - computerDeck - check length if empty
-- calls determineWinner()
+dom element - resetButtonEl (hidden after game load / initial reset listener) - DONE
+function - resetGame() - triggered by reset/restart button after win - DONE 
+
 */
 
 /* 
@@ -108,35 +109,19 @@ function - renderWinner()
 */
 
 /* 
-Feature: Restart game on 'play again' interaction 
+Feature: Game over for empty computer or player deck 
 Requirements: 
-dom element - resetButtonEl (hidden after game load / initial reset listener)
-function - resetGame() - triggered by reset/restart button after win
+function - continueGame() - called after each turn - before draw()
+- variable - computerDeck - check length if empty
+- variable - playerDeck - check length if empty
+- calls determineWinner()
 
+determineWinner() 
+- variable - gameWinner - set based on who has more cards
+
+gameOver()
+- calls renderWinner() and resetPlayerStats()
 */
-
-// COMPLETED FEATURE  
-
-/* 
-Feature: Game over Message and Play Again UI 
-Requirements:
-function - renderWin() - called by endGame( winner )
-
-  - updates game message
-  - hides game board
-  - reveals reset
-*/
-
-// ICEBOX
-/* 
-Feature: Restart game on 'play again' interaction 
-Requirements: 
-dom element - resetButtonEl (hidden after game load / initial reset listener)
-function - resetGame() - triggered by reset/restart button after win
-
-*/
-
-// DONE
 
 /* 
 
