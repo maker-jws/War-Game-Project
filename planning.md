@@ -240,16 +240,13 @@ Requirements:
 */
 
 // Future Features
+
+// find ways to decouple dom from utility functions
+
 // TODO - create testGameOver function
 // TODO - create testWar function
 // TODO - create testWarChain function
 // TODO - refactor state to class instances (Player)
-// CURRENT Feature
-/* 
-Feature: Game over for empty computer deck 
-Requirements: 
-function - checkWin() - called after each turn - before draw()
-- variable - computerDeck - check length if empty
-- calls endGame( winner ) 
-*/
+
+
 ```
