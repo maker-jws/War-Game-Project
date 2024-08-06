@@ -6,6 +6,8 @@
 
 "War" is a classic card game played between two players, where the goal is to win all the cards. The game involves drawing cards from each player's deck and comparing their values to determine the winner of each round. The game features special rules for "war," where cards of equal value lead to a tie-breaking scenario.
 
+![Game UI](./assets/game-ui.png)
+
 ## Getting Started - Gameplay
 
 1. The player is shown the instructions and rules for the game and click's the `start` button.
@@ -42,7 +44,8 @@
 1. CSS
 
 ## Next Steps
-
-- Explore CSS [Tailwind CSS](https://tailwindcss.com/)
-- Timers for UI changes
+- Add CSS Cards Library to the game
+- Explore [Tailwind CSS](https://tailwindcss.com/)
+- Additional timers for UI changes
 - Animated background GIFs
+- Find ways to make code more modular

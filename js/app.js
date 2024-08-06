@@ -17,19 +17,19 @@ const instructionsEl = document.querySelector("#instructions");
 const computerCardsEl = document.querySelector("#computer-cards .card-wrap");
 const playerCardsEl = document.querySelector("#player-cards .card-wrap");
 
-// UI - buttons
+// UI - buttons UI
 const drawCardEl = document.querySelector("#draw-button");
 const resetButtonEl = document.querySelector("#reset-button");
 const startButtonEl = document.querySelector("#start-game");
-// UI - game state
+
+// UI - game state UI
 const gameMessageEl = document.querySelector("#game-message");
 const computerDeckSizeEl = document.querySelector("#computer-deck-size");
 const playerDeckSizeEl = document.querySelector("#player-deck-size");
 const computerWinsEl = document.querySelector("#computer-wins");
 const playerWinsEl = document.querySelector("#player-wins");
 
-
-// FUNCTIONS
+// RENDER FUNCTIONS + UTILS
 const disableDrawButton = () => (drawCardEl.disabled = true);
 const enableDrawButton = () => (drawCardEl.disabled = false);
 const renderMessage = (msg) => (gameMessageEl.textContent = msg);
@@ -39,34 +39,6 @@ const renderGameStats = () => {
   playerDeckSizeEl.textContent = playerDeck.length;
   computerWinsEl.textContent = computerWins;
   playerWinsEl.textContent = playerWins;
-};
-
-const createDeck = (isTest = false) => {
-  const deck = isTest ? new TestDeck() : new Deck();
-  deck.createDeck(isTest);
-  deck.shuffle();
-  deck.shuffle();
-  deck.shuffle();
-  return deck.split();
-};
-
-const resetCards = () => {
-  p1Card = null;
-  p2Card = null;
-};
-
-const resetWarDecks = () => {
-  pWarDeck = [];
-  cWarDeck = [];
-};
-
-const resetPlayerStats = () => {
-  playerWins = 0;
-  computerWins = 0;
-  playerDeck = null;
-  computerDeck = null;
-  resetCards();
-  resetWarDecks();
 };
 
 const renderWinner = () => {
@@ -109,6 +81,38 @@ const renderWarCards = (cards, target) => {
   });
 };
 
+
+// GAME STATE - UTILITY FUNCTIONS
+
+const createDeck = (isTest = false) => {
+  const deck = isTest ? new TestDeck() : new Deck();
+  deck.createDeck(isTest);
+  deck.shuffle();
+  deck.shuffle();
+  deck.shuffle();
+  return deck.split();
+};
+
+const resetCards = () => {
+  p1Card = null;
+  p2Card = null;
+};
+
+const resetWarDecks = () => {
+  pWarDeck = [];
+  cWarDeck = [];
+};
+
+const resetPlayerStats = () => {
+  playerWins = 0;
+  computerWins = 0;
+  playerDeck = null;
+  computerDeck = null;
+  resetCards();
+  resetWarDecks();
+};
+
+// GAME PLAY HELPER FUNCTIONS
 const gameOver = () => {
   renderWinner();
   resetPlayerStats();
@@ -131,6 +135,7 @@ const checkGameWinner = () => {
   return gameOver();
 };
 
+// GAME LOGIC HELPER FUNCTIONS
 const handleWar = () => {
   // check if game is over at Start of War
   if (playerDeck.length < 2 || computerDeck.length < 2) {
@@ -226,6 +231,7 @@ const checkWinner = (war = false) => {
   }
 };
 
+// EVENT HANDLERS
 const handleDraw = () => {
   if (!continueGame()) {
     return checkGameWinner();
